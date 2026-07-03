@@ -1,0 +1,152 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "IFyXPLSs2ZjX2J_Z5M5Ro"
+uri = "file://artifacts/summit-outdoor/public/logo.png"
+type = "image"
+title = "Summit Outdoor Adventures logo"
+
+[[generated]]
+id = "-JMdspS-vB0OEOZf0pRxH"
+uri = "file://artifacts/summit-outdoor/public/images/hero-alpine.png"
+type = "image"
+title = "Hero alpine landscape"
+
+[[generated]]
+id = "h1YaVhgUcMvQeOjar0qty"
+uri = "file://artifacts/summit-outdoor/public/images/kayaking.png"
+type = "image"
+title = "Kayaking portfolio"
+
+[[generated]]
+id = "35nfP3qeITM516JiiuaV5"
+uri = "file://artifacts/summit-outdoor/public/images/climbing.png"
+type = "image"
+title = "Climbing portfolio"
+
+[[generated]]
+id = "v1gcaflzTTZSE0r6O96Pc"
+uri = "file://artifacts/summit-outdoor/public/images/social-banner.png"
+type = "image"
+title = "Social media banner"
+
+[[generated]]
+id = "V1FJDTxDvyRRv_VGUBgyE"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-summit-trek.png"
+type = "image"
+title = "summit trek portfolio"
+
+[[generated]]
+id = "SdyE0Alnf_8iXnUjKx92X"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-rock-climbing.png"
+type = "image"
+title = "rock climbing portfolio"
+
+[[generated]]
+id = "TE-yYUK0YHrv_lXheRitB"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-kayak-rapids.png"
+type = "image"
+title = "kayak rapids portfolio"
+
+[[generated]]
+id = "4-dktU9G3drBeDUQYmqkg"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-backcountry-ski.png"
+type = "image"
+title = "backcountry ski portfolio"
+
+[[generated]]
+id = "XVPDcB9VpkMNkxf29vlx8"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-wilderness-camp.png"
+type = "image"
+title = "wilderness camp portfolio"
+
+[[generated]]
+id = "wjtp8LUqDTK-MQcBoMAUh"
+uri = "file://artifacts/summit-outdoor/public/images/seed/portfolio-alpine-trek.png"
+type = "image"
+title = "alpine trek portfolio"
+
+[[generated]]
+id = "oO50wlh0e1F_euY_xy2B2"
+uri = "file://artifacts/summit-outdoor/public/images/seed/team-guide-1.png"
+type = "image"
+title = "team guide portrait one"
+
+[[generated]]
+id = "ZuqjoldzMzG9aOq5l_3QF"
+uri = "file://artifacts/summit-outdoor/public/images/seed/team-guide-2.png"
+type = "image"
+title = "team guide portrait two"
+
+[[generated]]
+id = "hYS2nGKG4bjbm2m_fe86X"
+uri = "file://artifacts/summit-outdoor/public/images/seed/team-guide-3.png"
+type = "image"
+title = "team guide portrait three"
+
+[[generated]]
+id = "ZmsSQqgh1mCAS2OZYwqnV"
+uri = "file://artifacts/summit-outdoor/public/images/seed/testimonial-1.png"
+type = "image"
+title = "testimonial customer one"
+
+[[generated]]
+id = "drsvRagooCG7YQMcYHSjk"
+uri = "file://artifacts/summit-outdoor/public/images/seed/testimonial-2.png"
+type = "image"
+title = "testimonial customer two"
+
+[[generated]]
+id = "5bS4dYt_rR7cBLMaENxay"
+uri = "file://artifacts/summit-outdoor/public/images/seed/testimonial-3.png"
+type = "image"
+title = "testimonial customer three"
+
+[[generated]]
+id = "hInf6MEbe8fFr2e6QA-9M"
+uri = "file://artifacts/summit-outdoor/public/images/seed/blog-gear-guide.png"
+type = "image"
+title = "blog gear guide cover"
+
+[[generated]]
+id = "5oUYbckU8sO8NHnAJ844a"
+uri = "file://artifacts/summit-outdoor/public/images/seed/blog-best-trails.png"
+type = "image"
+title = "blog best trails cover"
+
+[[generated]]
+id = "S8lsNviToOAD3LM9lATB2"
+uri = "file://artifacts/summit-outdoor/public/images/seed/blog-safety-tips.png"
+type = "image"
+title = "blog safety tips cover"
+
+[[generated]]
+id = "QPyRuF-NlQCLdnQKcjI1k"
+uri = "file://artifacts/summit-outdoor/public/images/seed/blog-family-adventures.png"
+type = "image"
+title = "blog family adventures cover"
+
+[[generated]]
+id = "vu3Q2Egh1VMd5PNeM1jGv"
+uri = "file://artifacts/summit-outdoor/public/images/social-1.png"
+type = "image"
+title = "Social Instagram Post"
+
+[[generated]]
+id = "FlVreo5BVlv45UMdIdrcN"
+uri = "file://artifacts/summit-outdoor/public/images/social-2.png"
+type = "image"
+title = "Social Story"
+
+[[generated]]
+id = "fh-dT6R5L9ar_X3HaxczZ"
+uri = "file://artifacts/summit-outdoor/public/images/social-3.png"
+type = "image"
+title = "Twitter Banner"
+
+[[generated]]
+id = "OpGjNVM77B8cympNoA7aI"
+uri = "file://artifacts/summit-outdoor/public/images/app-mockup.png"
+type = "image"
+title = "App Mockup"

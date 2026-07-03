@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Summit Outdoor Adventures"
+version = "1.0.0"
+id = "artifacts/summit-outdoor"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19087
+
+[services.development]
+run = "pnpm --filter @workspace/summit-outdoor run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/summit-outdoor", "run", "build" ]
+publicDir = "artifacts/summit-outdoor/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19087"
+BASE_PATH = "/"

@@ -10,6 +10,28 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: blog
+    description: Blog posts
+  - name: portfolio
+    description: Portfolio projects
+  - name: services
+    description: Services offered
+  - name: testimonials
+    description: Customer testimonials
+  - name: faq
+    description: Frequently asked questions
+  - name: contact
+    description: Contact form submissions
+  - name: newsletter
+    description: Newsletter subscriptions
+  - name: appointments
+    description: Appointment booking
+  - name: analytics
+    description: Analytics dashboard data
+  - name: admin
+    description: Admin dashboard data
+  - name: openai
+    description: OpenAI AI chat operations
 paths:
   /healthz:
     get:
@@ -24,6 +46,374 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /blog/posts:
+    get:
+      operationId: listBlogPosts
+      tags: [blog]
+      summary: List all blog posts
+      responses:
+        "200":
+          description: List of blog posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlogPost"
+  /blog/posts/{slug}:
+    get:
+      operationId: getBlogPost
+      tags: [blog]
+      summary: Get a blog post by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Blog post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlogPost"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /portfolio/projects:
+    get:
+      operationId: listPortfolioProjects
+      tags: [portfolio]
+      summary: List portfolio projects
+      responses:
+        "200":
+          description: List of portfolio projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PortfolioProject"
+
+  /services:
+    get:
+      operationId: listServices
+      tags: [services]
+      summary: List services offered
+      responses:
+        "200":
+          description: List of services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Service"
+
+  /testimonials:
+    get:
+      operationId: listTestimonials
+      tags: [testimonials]
+      summary: List customer testimonials
+      responses:
+        "200":
+          description: List of testimonials
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Testimonial"
+
+  /faqs:
+    get:
+      operationId: listFaqs
+      tags: [faq]
+      summary: List frequently asked questions
+      responses:
+        "200":
+          description: List of FAQs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FaqItem"
+
+  /contact-messages:
+    get:
+      operationId: listContactMessages
+      tags: [contact]
+      summary: List contact form submissions (admin)
+      responses:
+        "200":
+          description: List of contact messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactMessage"
+    post:
+      operationId: createContactMessage
+      tags: [contact]
+      summary: Submit the contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactMessageInput"
+      responses:
+        "201":
+          description: Created contact message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactMessage"
+
+  /newsletter/subscribers:
+    get:
+      operationId: listNewsletterSubscribers
+      tags: [newsletter]
+      summary: List newsletter subscribers (admin)
+      responses:
+        "200":
+          description: List of subscribers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsletterSubscriber"
+    post:
+      operationId: createNewsletterSubscriber
+      tags: [newsletter]
+      summary: Subscribe to the newsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsletterSubscriberInput"
+      responses:
+        "201":
+          description: Created subscriber
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterSubscriber"
+
+  /appointments:
+    get:
+      operationId: listAppointments
+      tags: [appointments]
+      summary: List booked appointments (admin/customer portal)
+      responses:
+        "200":
+          description: List of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Appointment"
+    post:
+      operationId: createAppointment
+      tags: [appointments]
+      summary: Book an appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AppointmentInput"
+      responses:
+        "201":
+          description: Created appointment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+  /appointments/{id}:
+    patch:
+      operationId: updateAppointmentStatus
+      tags: [appointments]
+      summary: Update an appointment's status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AppointmentStatusUpdate"
+      responses:
+        "200":
+          description: Updated appointment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /analytics/summary:
+    get:
+      operationId: getAnalyticsSummary
+      tags: [analytics]
+      summary: Get analytics dashboard summary
+      responses:
+        "200":
+          description: Analytics summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyticsSummary"
+
+  /admin/summary:
+    get:
+      operationId: getAdminSummary
+      tags: [admin]
+      summary: Get admin dashboard summary
+      responses:
+        "200":
+          description: Admin dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSummary"
+
+  /openai/conversations:
+    get:
+      operationId: listOpenaiConversations
+      tags: [openai]
+      summary: List all conversations
+      responses:
+        "200":
+          description: List of conversations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OpenaiConversation"
+    post:
+      operationId: createOpenaiConversation
+      tags: [openai]
+      summary: Create a new conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OpenaiConversationInput"
+      responses:
+        "201":
+          description: Created conversation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiConversation"
+  /openai/conversations/{id}:
+    get:
+      operationId: getOpenaiConversation
+      tags: [openai]
+      summary: Get conversation with messages
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Conversation with messages
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiConversationWithMessages"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiError"
+    delete:
+      operationId: deleteOpenaiConversation
+      tags: [openai]
+      summary: Delete a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OpenaiError"
+  /openai/conversations/{id}/messages:
+    get:
+      operationId: listOpenaiMessages
+      tags: [openai]
+      summary: List messages in a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OpenaiMessage"
+    post:
+      operationId: sendOpenaiMessage
+      tags: [openai]
+      summary: Send a text message and receive a streaming text response
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OpenaiMessageInput"
+      responses:
+        "200":
+          description: SSE stream of assistant text chunks
+          content:
+            text/event-stream: {}
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +424,473 @@ components:
       required:
         - status
 
+    ApiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    BlogPost:
+      type: object
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        title:
+          type: string
+        excerpt:
+          type: string
+        content:
+          type: string
+        category:
+          type: string
+        author:
+          type: string
+        imageUrl:
+          type: string
+        readTimeMinutes:
+          type: integer
+        publishedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - slug
+        - title
+        - excerpt
+        - content
+        - category
+        - author
+        - imageUrl
+        - readTimeMinutes
+        - publishedAt
+
+    PortfolioProject:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        imageUrl:
+          type: string
+        location:
+          type: string
+        clientName:
+          type: string
+        completedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - category
+        - description
+        - imageUrl
+        - location
+        - clientName
+        - completedAt
+
+    Service:
+      type: object
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        priceFrom:
+          type: number
+        duration:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - slug
+        - name
+        - description
+        - icon
+        - priceFrom
+        - duration
+        - features
+
+    Testimonial:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerName:
+          type: string
+        role:
+          type: string
+        quote:
+          type: string
+        rating:
+          type: integer
+        imageUrl:
+          type: string
+      required:
+        - id
+        - customerName
+        - role
+        - quote
+        - rating
+        - imageUrl
+
+    FaqItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        question:
+          type: string
+        answer:
+          type: string
+        category:
+          type: string
+      required:
+        - id
+        - question
+        - answer
+        - category
+
+    ContactMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - subject
+        - message
+        - createdAt
+
+    ContactMessageInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+        subject:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+      required:
+        - name
+        - email
+        - subject
+        - message
+
+    NewsletterSubscriber:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        subscribedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - email
+        - subscribedAt
+
+    NewsletterSubscriberInput:
+      type: object
+      properties:
+        email:
+          type: string
+          minLength: 3
+      required:
+        - email
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        serviceName:
+          type: string
+        preferredDate:
+          type: string
+        preferredTime:
+          type: string
+        notes:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: ["pending", "confirmed", "cancelled"]
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - email
+        - phone
+        - serviceName
+        - preferredDate
+        - preferredTime
+        - notes
+        - status
+        - createdAt
+
+    AppointmentInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+        phone:
+          type: string
+          minLength: 1
+        serviceName:
+          type: string
+          minLength: 1
+        preferredDate:
+          type: string
+        preferredTime:
+          type: string
+        notes:
+          type: string
+      required:
+        - name
+        - email
+        - phone
+        - serviceName
+        - preferredDate
+        - preferredTime
+
+    AppointmentStatusUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: ["pending", "confirmed", "cancelled"]
+      required:
+        - status
+
+    TrafficSourceStat:
+      type: object
+      properties:
+        source:
+          type: string
+        visitors:
+          type: integer
+        percentage:
+          type: number
+      required:
+        - source
+        - visitors
+        - percentage
+
+    TopPageStat:
+      type: object
+      properties:
+        path:
+          type: string
+        views:
+          type: integer
+        avgTimeSeconds:
+          type: integer
+      required:
+        - path
+        - views
+        - avgTimeSeconds
+
+    VisitorTrendPoint:
+      type: object
+      properties:
+        date:
+          type: string
+        visitors:
+          type: integer
+        pageViews:
+          type: integer
+      required:
+        - date
+        - visitors
+        - pageViews
+
+    AnalyticsSummary:
+      type: object
+      properties:
+        totalVisitors:
+          type: integer
+        totalPageViews:
+          type: integer
+        conversionRate:
+          type: number
+        avgSessionMinutes:
+          type: number
+        bounceRate:
+          type: number
+        topPages:
+          type: array
+          items:
+            $ref: "#/components/schemas/TopPageStat"
+        trafficBySource:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrafficSourceStat"
+        visitorsTrend:
+          type: array
+          items:
+            $ref: "#/components/schemas/VisitorTrendPoint"
+      required:
+        - totalVisitors
+        - totalPageViews
+        - conversionRate
+        - avgSessionMinutes
+        - bounceRate
+        - topPages
+        - trafficBySource
+        - visitorsTrend
+
+    AdminSummary:
+      type: object
+      properties:
+        totalAppointments:
+          type: integer
+        pendingAppointments:
+          type: integer
+        totalSubscribers:
+          type: integer
+        totalContactMessages:
+          type: integer
+        recentAppointments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Appointment"
+        recentContactMessages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactMessage"
+        recentSubscribers:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewsletterSubscriber"
+      required:
+        - totalAppointments
+        - pendingAppointments
+        - totalSubscribers
+        - totalContactMessages
+        - recentAppointments
+        - recentContactMessages
+        - recentSubscribers
+
+    OpenaiConversation:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - createdAt
+    OpenaiMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+        conversationId:
+          type: integer
+        role:
+          type: string
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - conversationId
+        - role
+        - content
+        - createdAt
+    OpenaiConversationInput:
+      type: object
+      properties:
+        title:
+          type: string
+      required:
+        - title
+    OpenaiMessageInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+    OpenaiConversationWithMessages:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenaiMessage"
+      required:
+        - id
+        - title
+        - createdAt
+        - messages
+    OpenaiError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
